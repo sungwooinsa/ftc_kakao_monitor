@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .summary-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .summary-item {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .summary-item .num {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .summary-item .label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .importance {
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .importance.high {
+            background: #ffe8e8;
+            color: #c62828;
+        }
+
+        .importance.middle {
+            background: #fff4d6;
+            color: #946200;
+        }
+
+        .importance.low {
+            background: #e9f6ed;
+            color: #2e7d32;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .body-preview {
+            margin-top: 16px;
+            background: #fafafa;
+            border: 1px solid #eceff3;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .body-preview summary {
+            cursor: pointer;
+            color: #555;
+            font-weight: 700;
+        }
+
+        .body-preview p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .summary-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-06</div>
+        </header>
+
+        <section class="summary-box">
+            <div class="summary-item">
+                <div class="num">4</div>
+                <div class="label">신규 자료</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">3</div>
+                <div class="label">중요도 상</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">0</div>
+                <div class="label">중요도 중</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">1</div>
+                <div class="label">중요도 하</div>
+            </div>
+        </section>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+                <div class="importance high">중요도 상</div>
+            </div>
+
+            <h2>LG 그룹 - 1·2·3차 협력사 상생협약 체결식 개최</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 기업거래정책과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#상생협약</span>
+<span class="keyword">#협력사 지원</span>
+<span class="keyword">#대금 지급 조건</span>
+<span class="keyword">#공정거래</span>
+<span class="keyword">#하도급</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>LG 그룹, 1·2·3차 협력사 상생협약 체결로 지원 확대</li>
+<li>대금 지급 조건 개선 및 2차 이하 협력사 금융·복지 지원 강화</li>
+<li>지속 가능한 협력 생태계 조성을 위한 상생 문화 확산 기대</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>협력사와의 공정거래 및 상생협력은 기업의 지속 가능한 성장을 위한 필수 요소이며, 관련 정책 및 동향을 파악하고 준수하는 것이 중요합니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 LG 그룹 - 1·2·3차 협력사 상생협약 체결식 개최 New 담당부서 : 기업거래정책과 등록 : 2026-07-06 조회수 : 129 첨부파일 260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.hwp (hwp, 234.0KB) 문서뷰어 260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.hwpx (hwpx, 266.6KB) 문서뷰어 260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.pdf (pdf, 530.4KB) 문서뷰어 붙임_LG 상생협약서.hwp (hwp, 99.5KB) 문서뷰어 전체 압축 파일 받기 000000 공정위, LG 그룹과 함께 1·2·3차 협력사 상생협약 체결식 개최 - 상생결제 확대 등 대금 지급 조건 개선, 2차 이하 협력사 금융(900억 원)·복지 등 지원 확대 - 공정거래위원회(위원장 주병기, 이하 ‘공정위’)는 7월 6일(월) LG사이언스파크에서 LG 그룹 7개 계열사*(이하 ‘LG’) 및 협력사 관계자들이 참석한 가운데, ‘LG – 1·2·3차 협력사 상생협약 체결식’을 개최하였다. * LG전자, LG디스플레이, LG이노텍, LG화학, LG에너지솔루션, LG생활건강, LG유플러스 이번 상생협약은 LG의 상생협력 노력의 성과가 1차 협력사에만 머물지 않고 2차 이하 협력사까지 이어지는 지속 가능한 협력 생태계를 조성하기 위해 마련된 것으로, 삼성, SK 그룹에 이어 대기업집단 중 세 번째로 체결하는 것이다. ▪ 일시 : 2026. 7. 6.(월) 13:50 ~ 15:00 (약 70분) ▪ 장소 : LG사이언스파크 ISC동 5층 컨버전스홀(서울시 강서구 소재) ▪ 참석자 : 약 170명 (공정위) 주병기 공정거래위원장, 기업협력정책관, 대변인 등 (기업측) LG 7개 계열사, 1차 협력사, 2차 협력사 임직원 등 &lt; LG 그룹 – 1·2·3차 협력사 상생협약 체결식 개요 &gt; 상생협약의 주요…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54084" target="_blank">260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.hwp (hwp, 234.0KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54085" target="_blank">260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.hwpx (hwpx, 266.6KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54086" target="_blank">260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.pdf (pdf, 530.4KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54087" target="_blank">붙임_LG 상생협약서.hwp (hwp, 99.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47692" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47692" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+                <div class="importance high">중요도 상</div>
+            </div>
+
+            <h2>한국주유소협회 제주도지회의 사업자단체 금지행위 및 제주시 농협, 서귀포시 농협의 참가행위 제재</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 총괄과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#사업자단체 금지행위</span>
+<span class="keyword">#가격 결정 담합</span>
+<span class="keyword">#과징금 부과</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>주유소협회 제주도지회, 가격 결정 담합으로 과징금 부과</li>
+<li>농협 2곳, 가격 인상·유지 적극 참여로 과징금 부과</li>
+<li>사업자단체 금지행위 및 참가행위 최초 적발·제재 사례</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>사업자단체는 구성사업자의 가격 결정 행위에 관여하거나 이를 유도해서는 안 되며, 구성사업자 역시 사업자단체의 가격 결정 행위에 적극 참여할 경우 법적 제재를 받을 수 있습니다. 이는 시장 경쟁 질서를 저해하는 행위로 간주될 수 있습니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 한국주유소협회 제주도지회의 사업자단체 금지행위 및 제주시 농협, 서귀포시 농협의 참가행위 제재 New 담당부서 : 총괄과 등록 : 2026-07-06 조회수 : 243 첨부파일 260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.hwp (hwp, 2.5MB) 문서뷰어 260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.hwpx (hwpx, 2.1MB) 문서뷰어 260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.pdf (pdf, 796.5KB) 문서뷰어 전체 압축 파일 받기 000000 (사)한국주유소협회 제주도지회의 사업자단체 금지행위, 제주시농업협동조합 및 서귀포농업협동조합의 참가행위 제재 - 경질유 가격 결정행위 및 이에 참가한 행위에 대해 시정명령 및 과징금 20억 5,000만 원 부과 공정거래위원회(위원장 주병기, 이하 ‘공정위’)는 사단법인 한국주유소협회 제주도지회(이하 ‘제주주유소협회’)*가 제주시농업협동조합(이하 ‘제주농협’) 및 서귀포농업협동조합(이하 ‘서귀포농협’)으로부터 다음날 경질유(휘발유, 경유, 등유) 판매가격을 미리 제공받아 구성사업자들의 판매가격으로 결정한 후 이를 구성사업자들에게 통지 및 준수하도록 한 행위에 대해 시정명령 및 과징금 3,000만 원을 부과하기로 하였다. * 제주도 지역의 주유소 운영사업자들을 회원사로 하여 구성된 사업자단체로 회원 수는 2024년 기준 총 116개 업체임 아울러, 제주농협 및 서귀포농협은 단순히 다음날 경질유 판매가격을 미리 제공하는 것을 넘어 동 협회와 합의하여 경질유 가격 인상·유지 등에 적극 참여한 점을 고려하여 시정명령 및 과징금 총 20억 2,000만 원*을 부과하기로 하였다. * 제주농협 9억 8,700만 원, 서귀포농협 10억 3,300만 원 이번 조치는 제주주유소협회의 사업자단체금지행위뿐만 아니라 동…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54081" target="_blank">260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.hwp (hwp, 2.5MB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54082" target="_blank">260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.hwpx (hwpx, 2.1MB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54083" target="_blank">260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.pdf (pdf, 796.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47691" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47691" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+                <div class="importance high">중요도 상</div>
+            </div>
+
+            <h2>명륜당의 부당한 지원행위에 대한 건 심의 절차 개시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 내부거래감시과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#부당지원행위</span>
+<span class="keyword">#저금리 자금 대여</span>
+<span class="keyword">#계열 대부업체</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>계열 대부업체에 정상 금리보다 낮은 금리로 자금 지원</li>
+<li>약 217억 원의 경제상 이익을 부당하게 제공한 혐의</li>
+<li>공정거래법 위반으로 심의 절차 개시 및 제재 가능성</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>계열회사에 대한 자금 지원 시 정상적인 시장 금리를 적용해야 하며, 부당한 저금리 지원은 공정거래법 위반으로 이어져 시정명령, 과징금, 고발 등의 제재를 받을 수 있습니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시 New 담당부서 : 내부거래감시과 등록 : 2026-07-06 조회수 : 317 첨부파일 260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.hwp (hwp, 304.0KB) 문서뷰어 260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.hwpx (hwpx, 246.1KB) 문서뷰어 260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.pdf (pdf, 222.5KB) 문서뷰어 전체 압축 파일 받기 000000 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시 공정거래위원회(위원장 주병기, 이하 ‘공정위’) 사무처는 명륜당과 그 계열회사인 14개 대부업체*(이하 ‘피심인들’)의 공정거래법 제45조 제1항 제9호(부당한 지원행위) 위반 혐의에 대한 행위사실, 위법성 및 조치의견 등을 기재한 심사보고서를 위원회에 제출하고 오늘 피심인들에게 송부하여 심의절차가 개시되었다. * 삼정엔젤네트웍스, 벤처엔젤네트웍스, 케이비엔젤네트웍스, 제이에스엔젤네트웍스, 에스엠엔젤네트웍스, 엠브이엔젤네트웍스, 디와이엔젤네트웍스, 에이치에스엔젤네트웍스, 이에스엔젤네트웍스, 지에스엔젤네트웍스, 굿투비, 엔에이치엔젤네트웍스, 비아이엔젤네트웍스, 아이제이엔젤네트웍스 ※ 심사보고서는 심사관이 조사 과정에서 파악한 위법성 및 그에 대한 조치의견을 기재한 것으로서 위원회 최종 판단을 구속하지 않음. 향후 독립된 위원회 심의를 거쳐 사건에 대한 최종 판단이 이루어질 예정임에 유의하여 주시기 바람 &lt;행위 사실(자금지원 행위)&gt; 심사관은 명륜당이 ’21. 12월부터 ’26. 4월까지(총 4년 3개월 간) 자신이 설립한 대부업체에 정상금리 보다 상당히 낮은 금리로 자금을 대여하여 과다한 경제상 이익을 제공하였다고 판단하였다. 명륜당은 ’21년부터 ’24년까지 총 14개의 대부업체를 순차적으로 설립한 후, 산업은행의 정책자금 등…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54078" target="_blank">260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.hwp (hwp, 304.0KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54079" target="_blank">260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.hwpx (hwpx, 246.1KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54080" target="_blank">260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.pdf (pdf, 222.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47690" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47690" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">4</div>
+                <div class="importance low">중요도 하</div>
+            </div>
+
+            <h2>조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 경쟁정책과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#공정거래</span>
+<span class="keyword">#법무실습</span>
+<span class="keyword">#법학전문대학원</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>한국공정거래조정원에서 로스쿨생 대상 법무실습 실시</li>
+<li>공정거래 실무 역량 제고 위한 조정안 작성 및 특강 제공</li>
+<li>예비 법조인 진로 탐색 및 분쟁 조정 역량 강화 지원</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>본 자료는 법학전문대학원생 대상 교육 프로그램에 관한 내용으로, 기업의 직접적인 컴플라이언스 이슈와는 거리가 있습니다. 다만, 향후 공정거래 분야의 전문 인력 양성에 기여할 수 있습니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시 New 담당부서 : 경쟁정책과 등록 : 2026-07-06 조회수 : 199 첨부파일 260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.hwp (hwp, 117.5KB) 문서뷰어 260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.hwpx (hwpx, 122.3KB) 문서뷰어 260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.pdf (pdf, 213.2KB) 문서뷰어 전체 압축 파일 받기 000000 한국공정거래조정원, 법학전문대학원생 대상 ‘하계 공익 법무실습’ 실시 &amp;nbsp- 조정안 작성 실습과 전문가 특강으로 공정거래 실무 역량 제고 - 한국공정거래조정원(원장 김정기, 이하 ‘조정원’)은 전국 21개 법학전문대학원(로스쿨) 재학생 52명을 대상으로 ‘하계 공익 법무실습’을 실시한다. 조정원은 불공정거래 관련 분쟁을 조정하는 전문기관으로서, 이번 실습을 통해 대체적 분쟁해결제도(native dispute resolution, adr)*인 조정제도에 대한 이해를 높이고, 예비 법조인들의 공정거래 분야의 실무를 폭넓게 경험할 수 있도록 다양한 교육 프로그램을 마련하였다. * 조정·중재 등과 같이 제3자의 관여나 당사자 간에 교섭과 타협으로 이뤄지는 소송 외 분쟁해결제도 이번 하계 공익 법무실습에서는 조정원 이상훈 부원장이 진행하는 ‘공정거래법의 탄생과 공정거래위원회의 역사’ 특강을 통해 우리나라 공정거래제도의 도입 배경과 발전 과정, 공정거래 정책의 변천사를 살펴보며 공정거래법에 대한 이해를 넓힐 수 있도록 하였다. 또한 공정거래위원회 사무관과 현직 공정거래 분야 변호사 5인*이 외부 강사로 참여하여 현장감 넘치는 실무 중심 교육을 제공할 예정이다. 조정원은 학교에서 접하기 어려운 공정거래 사건의 처리 절차와 주요 사례 등을 폭넓…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54075" target="_blank">260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.hwp (hwp, 117.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54076" target="_blank">260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.hwpx (hwpx, 122.3KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54077" target="_blank">260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.pdf (pdf, 213.2KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47689" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47689" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-06 16:07
+        </footer>
+    </div>
+</body>
+</html>
