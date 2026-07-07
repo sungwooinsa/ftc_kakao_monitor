@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-07</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>LG 그룹 - 1·2·3차 협력사 상생협약 체결식 개최</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 기업거래정책과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#상생협약</span>
+<span class="keyword">#협력사 지원</span>
+<span class="keyword">#대금 지급 조건</span>
+<span class="keyword">#공정거래</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>LG 그룹, 1·2·3차 협력사 상생협약 체결로 지원 확대</li>
+<li>대금 지급 조건 개선 및 2차 이하 협력사 금융·복지 지원 강화</li>
+<li>지속 가능한 협력 생태계 조성을 위한 상생협력 문화 확산</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>대기업은 협력사와의 상생협력을 통해 공급망 전반의 안정성을 강화하고, 중소기업은 개선된 대금 지급 조건과 금융 지원을 통해 경영 안정성을 확보할 수 있습니다. 이는 공정거래 질서 확립에도 기여합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54097" target="_blank">260706(참고) LG 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.pdf (pdf, 519.4KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47692" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>한국주유소협회 제주도지회의 사업자단체 금지행위 및 제주시 농협, 서귀포시 농협의 참가행위 제재</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 총괄과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#사업자단체 금지행위</span>
+<span class="keyword">#가격 결정 담합</span>
+<span class="keyword">#과징금 부과</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>주유소협회 제주도지회, 가격 결정 담합으로 제재</li>
+<li>농협 2곳, 가격 인상·유지에 적극 참여하여 과징금 부과</li>
+<li>가격 경쟁 제한 행위 최초 적발, 시장 경쟁 질서 확립 기대</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>사업자단체가 구성사업자의 가격 결정에 관여하거나, 구성사업자가 단체의 가격 결정 행위에 참여하는 것은 공정거래법 위반에 해당될 수 있습니다. 이는 과징금 부과 및 시정명령으로 이어질 수 있으므로, 가격 결정 과정의 독립성과 자율성을 확보하는 것이 중요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54083" target="_blank">260707(조간) 한국주유소협회 제주도지회 및 2개 농협의 사업자단체 금지행위 등 제재.pdf (pdf, 796.5KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47691" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>명륜당의 부당한 지원행위에 대한 건 심의 절차 개시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 내부거래감시과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#부당 지원행위</span>
+<span class="keyword">#저금리 자금 대여</span>
+<span class="keyword">#계열사 지원</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>계열 대부업체에 정상 금리보다 낮은 금리로 자금 지원</li>
+<li>약 217억 원의 경제상 이익을 부당하게 제공한 혐의</li>
+<li>공정거래법상 부당 지원행위 위반으로 심의 절차 개시</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>계열사에 대한 자금 지원 시 정상 금리 수준을 준수해야 하며, 이를 위반할 경우 공정거래법상 부당 지원행위로 제재를 받을 수 있습니다. 과징금 부과 및 고발 등의 조치가 내려질 수 있으므로 관련 규정을 철저히 준수해야 합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54080" target="_blank">260707(조간) 명륜당의 부당한 지원행위에 대한 건 심의 절차 개시.pdf (pdf, 222.5KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47690" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">4</div>
+            </div>
+
+            <h2>조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-06</span>
+                <span>담당부서: 경쟁정책과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#한국공정거래조정원</span>
+<span class="keyword">#법학전문대학원생</span>
+<span class="keyword">#공익 법무실습</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>한국공정거래조정원에서 법학전문대학원생 대상 실습 실시</li>
+<li>공정거래 실무 역량 제고 위한 교육 프로그램 제공</li>
+<li>조정제도 이해 및 분쟁해결 역량 강화 목표</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>본 자료는 법학전문대학원생 대상 교육 프로그램에 관한 내용으로, 일반 기업의 공정거래 관련 실무에 직접적인 영향을 미치지는 않습니다. 다만, 향후 공정거래 분야의 전문 인력 양성에 기여할 수 있습니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54077" target="_blank">260706(참고) 한국공정거래조정원, 법학전문대학원생 대상 하계 공익 법무실습 실시.pdf (pdf, 213.2KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47689" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-07 09:57
+        </footer>
+    </div>
+</body>
+</html>
