@@ -51,6 +51,32 @@
             opacity: 0.9;
         }
 
+        .summary-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .summary-item {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .summary-item .num {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .summary-item .label {
+            font-size: 13px;
+            color: #666;
+        }
+
         .article-card {
             background: white;
             border-radius: 20px;
@@ -77,6 +103,28 @@
             align-items: center;
             justify-content: center;
             font-weight: 800;
+        }
+
+        .importance {
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .importance.high {
+            background: #ffe8e8;
+            color: #c62828;
+        }
+
+        .importance.middle {
+            background: #fff4d6;
+            color: #946200;
+        }
+
+        .importance.low {
+            background: #e9f6ed;
+            color: #2e7d32;
         }
 
         .article-card h2 {
@@ -149,6 +197,26 @@
             line-height: 1.65;
         }
 
+        .body-preview {
+            margin-top: 16px;
+            background: #fafafa;
+            border: 1px solid #eceff3;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .body-preview summary {
+            cursor: pointer;
+            color: #555;
+            font-weight: 700;
+        }
+
+        .body-preview p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 0;
+        }
+
         .attachments {
             margin-top: 16px;
             padding: 12px 14px;
@@ -205,6 +273,10 @@
                 font-size: 23px;
             }
 
+            .summary-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
             .article-card {
                 padding: 20px 16px;
                 border-radius: 18px;
@@ -225,46 +297,71 @@
             <div class="date">기준일 : 2026-07-08</div>
         </header>
 
+        <section class="summary-box">
+            <div class="summary-item">
+                <div class="num">2</div>
+                <div class="label">신규 자료</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">1</div>
+                <div class="label">중요도 상</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">1</div>
+                <div class="label">중요도 중</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">0</div>
+                <div class="label">중요도 하</div>
+            </div>
+        </section>
+
         
         <section class="article-card">
             <div class="article-top">
                 <div class="article-number">1</div>
+                <div class="importance middle">중요도 중</div>
             </div>
 
-            <h2>전분당 입찰담합·부산물 가격담합 사건 심의 절차 개시</h2>
+            <h2>가정용 이동식 에어컨 6종 비교정보 제공</h2>
 
             <div class="meta">
-                <span>등록일: 2026-07-07</span>
-                <span>담당부서: 제조카르텔조사과</span>
-                <span>요약출처: 상세페이지 본문</span>
-                <span>요약상태: AI 요약</span>
+                <span>등록일: 2026-07-08</span>
+                <span>담당부서: 소비자안전교육과</span>
             </div>
 
             <div class="keyword-row">
-                <span class="keyword">#입찰담합</span>
-<span class="keyword">#가격담합</span>
-<span class="keyword">#전분당</span>
-<span class="keyword">#부산물</span>
-<span class="keyword">#과징금</span>
+                <span class="keyword">#이동식 에어컨</span>
+<span class="keyword">#냉방 성능</span>
+<span class="keyword">#소음</span>
+<span class="keyword">#단열재</span>
+<span class="keyword">#표시 개선</span>
             </div>
 
             <div class="block">
                 <h3>핵심 요약</h3>
                 <ol>
-                    <li>4개 전분당 제조·판매사업자가 8년 이상 입찰 및 부산물 가격 담합 행위 적발.</li>
-<li>입찰 담합 관련 매출액 940억원, 부산물 가격 담합 관련 매출액 1조 5500억원 추산.</li>
-<li>공정위, 법 위반 중대성 판단 및 과징금 부과 의견 제시, 심의 절차 개시.</li>
+                    <li>이동식 에어컨, 냉방 성능 및 소음 제품별 차이 존재</li>
+<li>일부 제품, 창문 틈새 단열 부족으로 냉방 효율 저하</li>
+<li>냉방 면적 및 CO2 배출량 등 표시 개선 필요 제품 확인</li>
                 </ol>
             </div>
 
             <div class="block impact-box">
                 <h3>실무 영향</h3>
-                <p>전분당 제조·판매 사업자는 입찰 및 부산물 가격 담합 관련 법규 위반 시 중대한 과징금 부과 및 법적 제재를 받을 수 있으므로, 관련 규정 준수 및 내부 통제 강화가 필요합니다.</p>
+                <p>제품의 냉방 성능, 소음, 에너지 효율 등 품질 관련 정보 제공 및 표시 개선 권고 사례는 향후 제품 개발 및 마케팅 전략 수립 시 참고해야 합니다. 특히, 단열재 보강 및 정확한 정보 표시는 소비자 만족도와 직결될 수 있습니다.</p>
             </div>
 
-            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54110" target="_blank">260708(조간) 전분, 전분당 입찰담합 사건 및 전분당 부산물 가격담합 사건 심의 절차 개시.pdf (pdf, 231.3KB)</a></div>
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 가정용 이동식 에어컨 6종 비교정보 제공 New 담당부서 : 소비자안전교육과 등록 : 2026-07-08 최종 수정일 : 2026-07-08 조회수 : 413 첨부파일 260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.hwp (hwp, 1.1MB) 문서뷰어 260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.hwpx (hwpx, 1.1MB) 문서뷰어 260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.pdf (pdf, 956.6KB) 문서뷰어 전체 압축 파일 받기 000000 [가정용 이동식 에어컨 품질비교 결과] 가정용 이동식 에어컨, 냉방성능·소음 제품 간 차이 있어 ‘가정용 이동식 에어컨’에 관한 가격·품질 비교정보는 ‘소비자24(www.consumer.go.kr)’ 내 ‘비교공감’란을 통해 소비자에게 제공될 예정임. 본격적인 무더위를 앞두고 복잡한 설치 작업이나 긴 대기 시간 없이 곧바로 사용할 수 있는 가정용 이동식 에어컨이 1인 가구를 중심으로 큰 주목을 받고 있다. 이에 한국소비자원(원장 윤수현)이 가정용 이동식 에어컨(5~8평형) 6개 제품의 냉방성능과 에너지비용, 소음, 안전성 등을 시험평가했다. 시험평가 결과, 냉방성능과 관련하여 일부 제품은 창문 틈새를 막는 단열재가 부족하여 개선이 필요했고, 월간 에너지비용은 전 제품 38,000~42,000원 수준이었다. 소음은 유사면적의 벽걸이형 에어컨에 비해 높게 나타났으며, 감전 위험 등 안전성은 전 제품이 전기용품안전기준(KC 60335-2-40)*에 적합한 것으로 확인됐다. * 전기용품안전기준(KC 60335-2-40) 히트펌프, 에어컨디셔너 및 제습기의 개별 요구사항 &lt; 항목별 주요 시험평가 결과 &gt; ☐ 냉방성능 시험 결과, 24℃까지 실내온도 낮추지 못하는 제품도 있어(세부내용 9쪽) 단열재 보강 없이 에어컨을 24℃*·강풍으로 작동시킨 후 35℃인 실내 온도**를 24℃까지 낮추는데 소요되는…</p>
+            </details>
+        
 
-            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47700" target="_blank">
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54126" target="_blank">260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.hwp (hwp, 1.1MB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54127" target="_blank">260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.hwpx (hwpx, 1.1MB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54128" target="_blank">260709(조간) 가정용 이동식 에어컨 6종 비교정보 제공.pdf (pdf, 956.6KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47708" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47708" target="_blank">
                 공정위 원문 보기
             </a>
         </section>
@@ -272,84 +369,48 @@
         <section class="article-card">
             <div class="article-top">
                 <div class="article-number">2</div>
+                <div class="importance high">중요도 상</div>
             </div>
 
-            <h2>전분 및 전분당 가격담합 제재</h2>
+            <h2>글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시</h2>
 
             <div class="meta">
-                <span>등록일: 2026-07-07</span>
-                <span>담당부서: 제조카르텔조사과</span>
-                <span>요약출처: 상세페이지 본문</span>
-                <span>요약상태: AI 요약</span>
+                <span>등록일: 2026-07-08</span>
+                <span>담당부서: 제조업감시과</span>
             </div>
 
             <div class="keyword-row">
-                <span class="keyword">#가격 담합</span>
-<span class="keyword">#전분 및 전분당</span>
-<span class="keyword">#과징금</span>
-<span class="keyword">#시정명령</span>
-<span class="keyword">#독자적 가격 재결정</span>
+                <span class="keyword">#비메모리 반도체</span>
+<span class="keyword">#공정거래법 위반</span>
+<span class="keyword">#Ship &amp; Debit</span>
+<span class="keyword">#거래상대방 제한</span>
+<span class="keyword">#경영 간섭</span>
             </div>
 
             <div class="block">
                 <h3>핵심 요약</h3>
                 <ol>
-                    <li>4개 전분·전분당 제조사는 7년 5개월간 가격 담합으로 역대 최대 규모인 7,476억 원의 과징금을 부과받았습니다.</li>
-<li>이들은 옥수수 가격 변동 시 판매 가격 인상·인하 시기와 폭을 합의하고 실행하여 부당 이득을 취했습니다.</li>
-<li>공정위는 법 위반 행위 금지 및 독자적 가격 재결정 명령을 내리고 향후 3년간 반기별 보고를 의무화했습니다.</li>
+                    <li>글로벌 비메모리 반도체 사업자 NXP, ADI 공정거래법 위반 혐의로 심의 절차 개시</li>
+<li>유통사 거래처 확보 제한, 마진율 사전 설정, 재판매가격 지정 등 위반 행위 적발</li>
+<li>공정위, 시정명령 및 과징금 부과 의견 제시, 최대 관련 매출액 4%까지 부과 가능</li>
                 </ol>
             </div>
 
             <div class="block impact-box">
                 <h3>실무 영향</h3>
-                <p>원재료 가격 변동 시 담합을 통한 가격 결정은 법 위반으로 이어져 막대한 과징금 부과 및 시정명령 대상이 될 수 있습니다. 기업은 공정 경쟁 질서를 준수하고 투명한 가격 결정 프로세스를 구축해야 합니다.</p>
+                <p>반도체 유통 및 재판매 과정에서 발생할 수 있는 거래상대방 제한, 경영 간섭, 재판매가격 유지 행위 등은 공정거래법 위반으로 이어질 수 있습니다. 관련 매출액의 상당 비율에 해당하는 과징금이 부과될 수 있으므로, 거래 구조 및 조건을 면밀히 검토하고 법규 준수 여부를 점검해야 합니다.</p>
             </div>
 
-            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54107" target="_blank">260708(조간) 전분 및 전분당 가격담합 제재.pdf (pdf, 1.1MB)</a></div>
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시 New 담당부서 : 제조업감시과 등록 : 2026-07-08 조회수 : 587 첨부파일 260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.hwp (hwp, 136.0KB) 문서뷰어 260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.hwpx (hwpx, 150.5KB) 문서뷰어 260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.pdf (pdf, 259.0KB) 문서뷰어 전체 압축 파일 받기 000000 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시 공정거래위원회(위원장 주병기,이하‘공정위’) 사무처는 글로벌 비메모리 반도체* 사업자인 NXP** 및 ADI***의 각 공정거래법 위반 혐의에 대해 행위 사실, 위법성 및 조치 의견 등을 기재한 심사보고서를 위원회에 제출하였다. 이에 따라 각 사건에 대한 심의 절차가 개시되었고, 7월 8일 피심인에게도 각 심사보고서를 송부하였다. * 데이터를 연산하거나 제어, 변환, 가공 등의 처리기능을 수행하는 시스템 반도체와 광‧개별소자 등을 통칭하는 개념(정보를 저장하는 기능을 하는 메모리 반도체와 구분) ** ▲엔엑스피 세미컨덕터즈 엔 브이(네덜란드), ▲엔엑스피 세미컨덕터즈 네덜란드 비 브이(네덜란드), ▲주식회사 엔엑스피반도체(대한민국)[이하 3개사를 통칭하여 ‘NXP’] *** ▲아날로그 디바이스 인크(미국), ▲아날로그 디바이스 인터내셔널 유 씨(아일랜드), ▲아나로그디바이스한국 주식회사(대한민국)[이하 3개사를 통칭하여 ‘ADI’] ※ 심사보고서는 심사관이 조사 과정에서 파악한 위법성 및 그에 대한 조치의견을 기재한 것으로서 위원회 최종 판단을 구속하지 않음. 향후 독립된 위원회 심의를 거쳐 사건에 대한 최종 판단이 이루어질 예정임에 유의하…</p>
+            </details>
+        
 
-            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47699" target="_blank">
-                공정위 원문 보기
-            </a>
-        </section>
-    
-        <section class="article-card">
-            <div class="article-top">
-                <div class="article-number">3</div>
-            </div>
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54122" target="_blank">260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.hwp (hwp, 136.0KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54123" target="_blank">260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.hwpx (hwpx, 150.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54124" target="_blank">260709(조간) 글로벌 비메모리 반도체 사업자의 공정거래법 위반 사건 심의 절차 개시.pdf (pdf, 259.0KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47706" target="_blank">전체 압축 파일 받기</a></div>
 
-            <h2>현대차 그룹 - 1·2·3차 협력사 상생협약 체결식 개최</h2>
-
-            <div class="meta">
-                <span>등록일: 2026-07-07</span>
-                <span>담당부서: 기업거래정책과</span>
-                <span>요약출처: 상세페이지 본문</span>
-                <span>요약상태: AI 요약</span>
-            </div>
-
-            <div class="keyword-row">
-                <span class="keyword">#상생협약</span>
-<span class="keyword">#대금 지급 조건</span>
-<span class="keyword">#협력사 지원</span>
-<span class="keyword">#미래 모빌리티</span>
-            </div>
-
-            <div class="block">
-                <h3>핵심 요약</h3>
-                <ol>
-                    <li>현대차 그룹은 1·2·3차 협력사와 상생협약을 체결하여 대금 지급 조건 개선에 나섰다.</li>
-<li>협력사들은 마감 후 10일 이내 대금 지급 및 현금성 결제 비율 제고에 동참하기로 했다.</li>
-<li>미래 모빌리티 산업 전환을 위해 협력사 기술 및 교육 지원을 확대하는 내용도 포함되었다.</li>
-                </ol>
-            </div>
-
-            <div class="block impact-box">
-                <h3>실무 영향</h3>
-                <p>대기업의 상생협약 체결은 공급망 전반의 거래 관행 개선을 유도하며, 협력사의 유동성 확보 및 기술 경쟁력 강화에 기여할 수 있다. 이는 하도급법 준수 및 공정거래 문화 확산 측면에서 중요하게 관리될 필요가 있다.</p>
-            </div>
-
-            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54100" target="_blank">260707(참고) 현대차 그룹 - 1,2,3차 협력사 상생협약 체결식 개최.pdf (pdf, 523.5KB)</a></div>
-
-            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47697" target="_blank">
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47706" target="_blank">
                 공정위 원문 보기
             </a>
         </section>
@@ -357,7 +418,7 @@
 
         <footer class="footer">
             본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
-            생성 시각 : 2026-07-08 09:59
+            생성 시각 : 2026-07-09 09:00
         </footer>
     </div>
 </body>
