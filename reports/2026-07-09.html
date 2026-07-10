@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .summary-box {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 18px 0;
+        }
+
+        .summary-item {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+        }
+
+        .summary-item .num {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .summary-item .label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .importance {
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .importance.high {
+            background: #ffe8e8;
+            color: #c62828;
+        }
+
+        .importance.middle {
+            background: #fff4d6;
+            color: #946200;
+        }
+
+        .importance.low {
+            background: #e9f6ed;
+            color: #2e7d32;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .body-preview {
+            margin-top: 16px;
+            background: #fafafa;
+            border: 1px solid #eceff3;
+            border-radius: 12px;
+            padding: 12px 14px;
+        }
+
+        .body-preview summary {
+            cursor: pointer;
+            color: #555;
+            font-weight: 700;
+        }
+
+        .body-preview p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .summary-box {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-09</div>
+        </header>
+
+        <section class="summary-box">
+            <div class="summary-item">
+                <div class="num">2</div>
+                <div class="label">신규 자료</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">1</div>
+                <div class="label">중요도 상</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">1</div>
+                <div class="label">중요도 중</div>
+            </div>
+            <div class="summary-item">
+                <div class="num">0</div>
+                <div class="label">중요도 하</div>
+            </div>
+        </section>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+                <div class="importance middle">중요도 중</div>
+            </div>
+
+            <h2>미래에셋컨설팅의 코빗 인수 건 승인</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-09</span>
+                <span>담당부서: 기업결합과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#기업결합</span>
+<span class="keyword">#가상자산 거래소</span>
+<span class="keyword">#경쟁 제한성</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>미래에셋컨설팅의 코빗 인수 건이 공정위 승인을 받았습니다.</li>
+<li>가상자산 거래소 시장 경쟁 제한 가능성이 낮다고 판단되었습니다.</li>
+<li>전통 금융권과 가상자산 융합 흐름의 첫 사례로 기대됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>가상자산 거래소 시장의 경쟁 환경 변화 및 전통 금융과의 융합 가능성을 주시해야 합니다. 향후 유사한 기업결합 시에도 경쟁 제한성 판단 기준을 참고할 필요가 있습니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 미래에셋컨설팅의 코빗 인수 건 승인 New 담당부서 : 기업결합과 등록 : 2026-07-09 조회수 : 1086 첨부파일 260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.hwp (hwp, 130.5KB) 문서뷰어 260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.hwpx (hwpx, 143.2KB) 문서뷰어 260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.pdf (pdf, 235.7KB) 문서뷰어 전체 압축 파일 받기 000000 ‘미래에셋컨설팅’의 ‘코빗’ 인수 건 승인 - 가상자산 거래소 시장의 독과점 구조 개선 및 경쟁 활성화에 기여할 것으로 기대 공정거래위원회(위원장 주병기, 이하 ‘공정위’)는 미래에셋컨설팅㈜(이하 ‘미래에셋컨설팅’)의 ㈜코빗(이하 ‘코빗’) 주식취득 건에 대하여 관련 시장에서의 경쟁을 제한할 가능성이 크지 않다고 판단해 기업결합을 승인하였다. &lt; 기업결합 개요 &gt; 기업집단 ｢미래에셋｣ 계열회사인 미래에셋컨설팅이 코빗 주식 92.06%를 약 1,334억 원에 취득하는 건이다. 미래에셋컨설팅은 매출액 대부분이 호텔운영에서 발생하는 비금융계열사이며, 그 밖에 ｢미래에셋｣의 금융계열사로는 미래에셋증권㈜, 미래에셋자산운용㈜ 등이 있다. 코빗은 원화() 거래가 가능한 가상자산 거래소 ‘코빗’의 운영사이다. 가상자산 거래소에서 원화 거래를 하기 위해서는 ｢특정금융정보법｣에 따라 정보보호 관리체계 인증 획득, 실명확인이 가능한 은행 입출금 계정 연계 등의 요건을 갖추어 금융당국의 승인을 받아야 하며, 이러한 승인을 받은 국내 가상자산 거래소는 업비트, 빗썸, 코인원, 코빗, 고팍스 5개뿐이다. 국내 가상자산 시장은 법인투자자보다 개인투자자 비중이 훨씬 큰 구조를 가지고 있다. 개인투자자는 가상자산 거래소 선택 시 수수료보다는 유동성*을 우선하는 경향이 있는데, 거래소의 유동성이 높을수록 매도호가와 매수호가 간 간격이 작아 거래 체결이 용이해지기 때문이다.…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54136" target="_blank">260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.hwp (hwp, 130.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54137" target="_blank">260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.hwpx (hwpx, 143.2KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54138" target="_blank">260709(참고) 미래에셋컨설팅의 코빗 인수 건 승인.pdf (pdf, 235.7KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47713" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47713" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+                <div class="importance high">중요도 상</div>
+            </div>
+
+            <h2>솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-09</span>
+                <span>담당부서: 서비스카르텔조사과</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#부당한 공동행위</span>
+<span class="keyword">#담합</span>
+<span class="keyword">#최저 판매가격</span>
+<span class="keyword">#거래처 제한</span>
+<span class="keyword">#과징금</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>솔리드웍스 판매사업자 8곳, 최저가 및 거래처 제한 합의 적발</li>
+<li>시정명령 및 총 23.72억 원 과징금 부과 결정</li>
+<li>산업용 소프트웨어 시장 담합 관행 개선 기대</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>소프트웨어 판매사업자들은 최저 판매가격 제한, 거래처 제한 등 공동행위가 공정거래법 위반에 해당될 수 있음을 인지하고, 경쟁 제한적인 합의를 지양해야 합니다. 향후 유사 행위에 대한 과징금 상향 가능성도 고려해야 합니다.</p>
+            </div>
+
+            
+            <details class="body-preview">
+                <summary>본문 일부 보기</summary>
+                <p>보도/해명 상세보기 - 게시물제목명,담당부서,첨부파일,내용 정보 제공 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재 New 담당부서 : 서비스카르텔조사과 등록 : 2026-07-09 조회수 : 493 첨부파일 260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.hwp (hwp, 279.0KB) 문서뷰어 260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.hwpx (hwpx, 295.5KB) 문서뷰어 260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.pdf (pdf, 398.9KB) 문서뷰어 전체 압축 파일 받기 000000 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재 - 최저 판매가격, 거래처 제한 합의에 대해 시정명령 및 과징금 부과- 공정거래위원회(위원장 주병기, 이하 ‘공정위’)는 2021년 8월부터 2024년 7월까지 8개 솔리드웍스 소프트웨어 판매사업자들*이 자신들이 판매하는 솔리드웍스 제품군의 최저 판매가격과 거래처 제한 등을 합의하고 이를 실행한 행위를 적발하여 시정명령과 함께 과징금 총 23억 7,200만 원을 부과하기로 결정하였다. * ㈜노드데이타, ㈜메이븐, ㈜솔코, ㈜웹스시스템코리아, ㈜위버맨시, ㈜케이앤솔루션, ㈜한영솔루텍, 프리즘(주)이며 국내 솔리드웍스 제품 판매시장에서 이들 8개 사의 시장점유율은 100%이다. 솔리드웍스(solidworks)는 다국적 소프트웨어 기업 다쏘시스템(dassault temes solidworks corporation)이 개발한 산업용 소프트웨어로서 기계, 가전, 의료기기 등 다양한 업종에서 제품 설계 및 관리 등을 위해 널리 활용되고 있다. 솔리드웍스 소프트웨어 판매사업자들은 경쟁 회피와 수익증대 등을 목적으로 대면 모임, 모바일메신저 대화 등을 통해 솔리드웍스 제품군의 최저판매가격을 정하고, 특정 사업자가 기존에 거래하거나 먼저 영업을 개시한 거래처에 대해 다른 사업자들의 영업을 금지하고 해당 거래처에서 견적을…</p>
+            </details>
+        
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54133" target="_blank">260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.hwp (hwp, 279.0KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54134" target="_blank">260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.hwpx (hwpx, 295.5KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54135" target="_blank">260710(조간) 솔리드웍스 소프트웨어 판매사업자의 부당한 공동행위 제재.pdf (pdf, 398.9KB)</a><a href="https://www.ftc.go.kr/www/downloadBbsFileAll.do?atchmnflNo=47712" target="_blank">전체 압축 파일 받기</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47712" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-10 09:14
+        </footer>
+    </div>
+</body>
+</html>
