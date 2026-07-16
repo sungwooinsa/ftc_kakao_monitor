@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-16</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>공정위, 대·중소기업 상생협력 간담회 개최</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-15</span>
+                <span>담당부서: 기업거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#상생협력</span>
+<span class="keyword">#하도급대금</span>
+<span class="keyword">#스마트공장</span>
+<span class="keyword">#금융지원</span>
+<span class="keyword">#거래문화</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정위는 대·중소기업 상생협력 간담회를 개최하여 대기업의 우수사례를 공유하고 현장 의견을 청취했다.</li>
+<li>현대자동차는 스마트공장 지원, 하도급대금 연동제 도입, 수출마케팅 지원 등을 소개했다.</li>
+<li>롯데건설은 금융지원, 대금 조정, 부당특약 근절 등 협력사와의 지속가능한 관계 구축 노력을 공유했다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>대기업의 상생협력 우수사례 공유는 하도급 거래 관행 개선에 대한 시사점을 제공하며, 공정위의 향후 정책 방향을 이해하는 데 도움이 된다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54189" target="_blank">260715(참고) 공정위, 대중소기업 상생협력 간담회 개최(수정).pdf (pdf, 246.5KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47735" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>공정위 제2회 특별성과 포상금 수여</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-15</span>
+                <span>담당부서: 혁신행정법무담당관</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#특별성과 포상금</span>
+<span class="keyword">#담합</span>
+<span class="keyword">#부당지원</span>
+<span class="keyword">#불공정 계약</span>
+<span class="keyword">#리베이트</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정위는 민생 안정 기여 직원에게 총 2,100만원 특별성과 포상금 수여.</li>
+<li>밀가루·은행LTV·인쇄용지 담합, HDC 부당지원 등 주요 사건 조사팀 포상.</li>
+<li>택배 종사자 안전사고 유발 계약 조건 시정 및 장례식장 리베이트 최초 제재.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>공정위는 민생과 직결된 담합 및 불공정행위 적발에 대한 포상 제도를 운영하며, 이는 관련 법규 위반 시 엄정한 법 집행 의지를 보여줍니다. 기업은 담합, 부당지원, 불공정 계약 등 법 위반 행위에 대한 철저한 점검 및 준수 노력이 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54177" target="_blank">260716(조간) 공정위 제2회 특별성과 포상금 수여.pdf (pdf, 693.6KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47734" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>석유화학 사업재편 관련 대산 1호 기업결합 건 심의절차 개시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-15</span>
+                <span>담당부서: 국제기업결합과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#기업결합</span>
+<span class="keyword">#석유화학</span>
+<span class="keyword">#경쟁제한</span>
+<span class="keyword">#LDPE</span>
+<span class="keyword">#EVA</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>롯데케미칼과 HD현대오일뱅크의 석유화학 사업재편 관련 기업결합 심사 절차가 개시되었습니다.</li>
+<li>국내 LDPE 및 EVA 시장에서 경쟁을 실질적으로 제한할 우려가 있다고 판단되었습니다.</li>
+<li>공정위는 시정방안 제출 후 심사보고서를 위원회에 제출하였으며, 최종 판단은 위원회 심의를 거쳐 이루어집니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>기업결합 시 국내 주요 석유화학 시장에서의 경쟁 제한 가능성을 면밀히 검토해야 하며, 공정거래법 위반 시 시정명령 등 제재가 부과될 수 있음을 인지해야 합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54174" target="_blank">260716(조간) 석유화학 사업재편 관련 대산1호 기업결합 건 심의 절차 개시.pdf (pdf, 226.2KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47733" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-16 13:43
+        </footer>
+    </div>
+</body>
+</html>
