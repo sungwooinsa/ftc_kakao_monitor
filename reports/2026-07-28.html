@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-28</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>2026년 가맹 분야 실태조사 실시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-27</span>
+                <span>담당부서: 가맹거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#가맹</span>
+<span class="keyword">#실태조사</span>
+<span class="keyword">#필수품목</span>
+<span class="keyword">#차액가맹금</span>
+<span class="keyword">#로열티</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정위는 21개 업종 200개 가맹본부 및 12,000개 가맹점 대상 실태조사를 실시합니다.</li>
+<li>필수품목 제도 개선사항 정착 여부와 거래 관행 개선 여부를 중점 점검합니다.</li>
+<li>차액가맹금 분쟁 고려하여 화장품 업종 추가, 로열티 수취 유도 정책 이행 여부 파악합니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>가맹본부는 필수품목 거래 관행 및 계약서 의무 기재 사항 준수 여부를 점검해야 하며, 가맹점사업자는 필수품목 관련 거래 관행 및 제도 인지 여부를 파악해야 합니다. 조사 결과는 향후 정책 방향 설정에 활용될 예정입니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54289" target="_blank">260727(참고) 2026년 가맹분야 실태조사 실시.pdf (pdf, 341.9KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47785" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>㈜라인건설의 불공정하도급거래행위 제재</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-27</span>
+                <span>담당부서: 하도급조사과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#하도급대금</span>
+<span class="keyword">#지연이자</span>
+<span class="keyword">#미지급</span>
+<span class="keyword">#시정명령</span>
+<span class="keyword">#자진시정</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>㈜라인건설은 64개 수급사업자에게 하도급대금 지연이자를 미지급하여 시정명령을 받았습니다.</li>
+<li>목적물 수령일로부터 60일 초과 지급 시 연리 15.5%의 지연이자를 지급해야 합니다.</li>
+<li>총 11억 6,184만 원의 지연이자를 자진 시정했으나, 재발 방지를 위해 시정명령이 부과되었습니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>하도급대금 지급 시 법정 이자율에 따른 지연이자를 정확히 계산하여 지급해야 하며, 이를 누락할 경우 법적 제재를 받을 수 있습니다. 자진 시정 노력에도 불구하고 위반 규모 및 피해 수급사업자 수에 따라 시정명령이 부과될 수 있음을 유의해야 합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54286" target="_blank">260728(조간) (주)라인건설의 하도급법 위반행위 제재.pdf (pdf, 382.0KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47784" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-28 08:00
+        </footer>
+    </div>
+</body>
+</html>
