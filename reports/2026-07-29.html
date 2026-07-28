@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-07-29</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>가맹사업법 시행령 개정안 국무회의 통과</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-28</span>
+                <span>담당부서: 가맹거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#가맹사업법</span>
+<span class="keyword">#시행령 개정</span>
+<span class="keyword">#정보공개서</span>
+<span class="keyword">#등록 절차</span>
+<span class="keyword">#직영점 운영</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>가맹사업법 시행령 개정안이 국무회의를 통과하여 정보공개서 기재 항목 개편 및 등록 절차 정비가 이루어집니다.</li>
+<li>정보공개서 변경 주기가 분기별 1회로 단축되고, 가맹점 생애주기 순으로 목차가 재편되어 정보 투명성이 강화됩니다.</li>
+<li>직영점 운영 사실 증빙 서류 제출 의무화, 전자문서 통지 근거 마련, 자진 등록 취소 절차 구체화 등도 포함됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>가맹본부는 정보공개서 작성 및 제출 시 변경된 항목과 주기를 준수해야 하며, 직영점 운영 증빙 서류 준비에 유의해야 합니다. 또한, 등록 절차 및 통지 방식 변화에 대한 이해가 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54306" target="_blank">260728(참고) 가맹사업법 시행령 개정안 국무회의 통과.pdf (pdf, 257.6KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47793" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>하도급법 시행령 개정안 국무회의 통과</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-28</span>
+                <span>담당부서: 기업거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#하도급대금 연동</span>
+<span class="keyword">#지급보증</span>
+<span class="keyword">#신고포상금</span>
+<span class="keyword">#과징금 가중</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>하도급법 시행령 개정안이 국무회의를 통과하여 하도급대금 연동 대상에 주요 에너지까지 포함됩니다.</li>
+<li>건설하도급대금 지급보증 예외 사유가 축소되어 소액 공사 외에는 지급보증이 의무화됩니다.</li>
+<li>신고포상금 지급 대상이 확대되고, 반복 법 위반 시 과징금 가중 한도가 상향 조정됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>하도급대금 연동 대상 확대 및 지급보증 의무 강화로 원사업자의 계약 관리 및 비용 부담이 증가할 수 있습니다. 또한, 법 위반 시 제재 수준이 높아짐에 따라 컴플라이언스 강화가 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54303" target="_blank">260728(참고) 하도급법 시행령 개정안 국무회의 통과.pdf (pdf, 431.6KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47792" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>공기청정기 호환필터 20종 품질 비교정보 제공</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-07-28</span>
+                <span>담당부서: 소비자안전교육과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#공기청정기</span>
+<span class="keyword">#호환필터</span>
+<span class="keyword">#품질 비교</span>
+<span class="keyword">#유해가스 제거</span>
+<span class="keyword">#미세먼지 제거</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공기청정기 호환필터 20종 품질 비교 결과, 일부 제품은 정품 대비 유해가스 제거 성능이 현저히 낮았다.</li>
+<li>2개 호환필터 제품에서 함유금지물질인 MIT가 검출되어 즉시 판매 중단 및 환불 조치가 이루어졌다.</li>
+<li>유해가스 및 미세먼지 제거 성능 미흡 제품에 대해 품질 개선 조치가 권고되었으며, 13개 업체는 이를 수용했다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>공기청정기 호환필터의 품질 및 안전성 기준 미달 제품이 확인되어, 관련 부품 제조사들은 제품의 성능과 안전 기준 준수 여부를 철저히 점검해야 합니다. 또한, 소비자에게 정확한 정보 제공 및 문제 발생 시 신속한 대응 체계를 갖추는 것이 중요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54299" target="_blank">260729(조간) 공기청정기 호환필터 20종 품질 비교정보 제공.pdf (pdf, 892.2KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47790" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-07-29 08:00
+        </footer>
+    </div>
+</body>
+</html>
