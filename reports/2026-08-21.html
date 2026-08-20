@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-08-21</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>공정거래법·하도급법 개정안 국회 본회의 통과</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-20</span>
+                <span>담당부서: 기업거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#공정거래법 개정</span>
+<span class="keyword">#하도급법 개정</span>
+<span class="keyword">#자료제출의무</span>
+<span class="keyword">#재조사요청</span>
+<span class="keyword">#처분시효</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정거래법 및 하도급법 개정안이 국회 본회의를 통과하여 공정위 자료제출 의무가 도입됩니다.</li>
+<li>손해배상 소송에서 공정위 사건 자료 활용이 확대되고, 신고인의 재조사 요청 절차가 법제화됩니다.</li>
+<li>하도급법 위반 시 처분시효 산정 시 분쟁조정 기간이 제외되고 기산점이 명확화됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>향후 손해배상 소송에서 공정위 자료 확보가 용이해져 피해 기업의 입증 부담이 완화될 것으로 예상됩니다. 또한, 하도급법 위반 관련 처분시효 합리화로 법 집행의 예측 가능성이 높아질 것입니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54527" target="_blank">260820(참고) 공정거래법, 하도급법 개정안 국회 본회의 통과.pdf (pdf, 496.9KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47903" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>할부거래법 개정안 국회 본회의 통과</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-20</span>
+                <span>담당부서: 특수거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#할부거래법</span>
+<span class="keyword">#선불식 할부거래</span>
+<span class="keyword">#지배주주 신용공여</span>
+<span class="keyword">#통합정보시스템</span>
+<span class="keyword">#소비자 보호</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>선불식 할부거래업자의 지배주주 신용공여 총액을 자본금의 50% 이내로 제한하고 위반 시 처벌 강화.</li>
+<li>소비자 계약 정보, 피해보상 절차 등을 제공하는 선불식 할부거래 통합정보시스템 구축 근거 마련.</li>
+<li>영업정지 사유 확대, 실태조사 근거 신설 등으로 선불식 할부거래업자 관리·감독 강화.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>선불식 할부거래업자는 지배주주에 대한 신용공여 한도 준수 및 관련 절차 이행에 유의해야 하며, 소비자 정보 제공 확대에 따른 투명성 강화에 대비해야 합니다. 또한, 영업정지 사유 확대 및 실태조사 강화로 법규 준수 및 내부 통제 강화가 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54521" target="_blank">260820(참고) 할부거래법 개정안 국회 본회의 통과.pdf (pdf, 600.1KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47901" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>석유화학 사업재편 관련 대산 1호 기업결합 건 심사 결과 발표</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-20</span>
+                <span>담당부서: 국제기업결합과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#기업결합</span>
+<span class="keyword">#석유화학</span>
+<span class="keyword">#LDPE</span>
+<span class="keyword">#EVA</span>
+<span class="keyword">#경쟁제한</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>롯데케미칼과 HD현대오일뱅크의 석유화학 사업재편 기업결합이 국내 LDPE·EVA 시장 경쟁제한 우려로 조건부 승인됨.</li>
+<li>가격 인상·인하율 제한, 공급 유지 의무, 정보교환 및 임직원 인사 제한 등 시정조치가 부과됨.</li>
+<li>통합 법인 HD현대케미칼은 협력업체와의 상생협력 방안을 추후 공정위와 협의하여 발표할 예정임.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>기업결합 시 경쟁제한 우려가 있는 시장에서는 공정위의 시정조치 부과 가능성이 높으므로, 관련 법규 준수 및 시장 경쟁 상황에 대한 면밀한 검토가 필요합니다. 또한, 통합 과정에서 발생하는 협력업체와의 관계 및 상생협력 방안 마련도 중요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54518" target="_blank">260821(조간) 석유화학 사업재편 관련 대산1호 기업결합 조건부 승인.pdf (pdf, 416.2KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47900" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-08-21 08:00
+        </footer>
+    </div>
+</body>
+</html>
