@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-08-28</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>대규모유통업법 시행령 및 고시 입법 · 행정예고</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-27</span>
+                <span>담당부서: 유통대리점정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#대규모유통업법</span>
+<span class="keyword">#과징금 부과체계 개편</span>
+<span class="keyword">#정률과징금</span>
+<span class="keyword">#납품대금</span>
+<span class="keyword">#반복 법위반 가중</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>대규모유통업법상 과징금 부과체계가 위반금액 산정 불가 시 관련 납품대금 기준으로 변경됩니다.</li>
+<li>과징금 부과기준율 상향, 반복 법위반 가중 강화, 감경 사유 축소 등으로 법 위반 억지력이 강화됩니다.</li>
+<li>현장조사 방해 외 진술조사 방해 시 과태료 부과 기준 마련 등 법령 체계 정비도 함께 추진됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>대규모유통업법 위반 시 과징금 산정 방식 및 수준에 변화가 예상되므로, 관련 규정 개정 동향을 면밀히 파악하고 법규 준수 노력을 강화해야 합니다. 특히, 납품대금 관련 거래 투명성 확보 및 법 위반 이력 관리에 유의해야 합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54606" target="_blank">260827(참고) 대규모유통업법 시행령 및 고시 입법 행정예고.pdf (pdf, 486.9KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47939" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>섬유탈취제 8종 품질 비교정보 제공</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-27</span>
+                <span>담당부서: 소비자안전교육과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#섬유탈취제</span>
+<span class="keyword">#탈취성능</span>
+<span class="keyword">#안전기준</span>
+<span class="keyword">#표시사항</span>
+<span class="keyword">#가격비교</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>섬유탈취제 8종의 탈취성능, 안전성, 가격 등 비교 결과, 냄새 종류별 탈취 성능 차이가 확인됨.</li>
+<li>모든 제품이 안전기준에 적합했으나, 일부 제품은 사용상 주의사항 표시가 미흡하여 개선 조치됨.</li>
+<li>용량 대비 가격은 제품 간 최대 2.3배 차이가 나며, 포장재 재활용 용이성도 제품별로 차이가 있음.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>소비자들의 제품 선택 시 탈취 성능, 안전성, 가격, 친환경성 등을 종합적으로 고려해야 함을 시사합니다. 특히, 표시 기준 준수 및 개선 조치 이행은 기업의 컴플라이언스 리스크 관리 측면에서 중요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54603" target="_blank">260828(조간) 섬유탈취제 8종 품질 비교정보 제공.pdf (pdf, 929.8KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47938" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>듀오정보(주)의 부당한 광고행위 제재</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-26</span>
+                <span>담당부서: 소비자과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#부당광고</span>
+<span class="keyword">#거짓·과장 광고</span>
+<span class="keyword">#결혼정보업체</span>
+<span class="keyword">#과징금</span>
+<span class="keyword">#시정명령</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>결혼정보업체 듀오정보(주)가 전문직·명문대 회원 수 등을 거짓·과장 광고함.</li>
+<li>업계 유일 외부감사, 유일 금감원 전자공시 업체라는 허위 광고도 포함됨.</li>
+<li>공정위는 시정명령과 함께 3억 4,500만 원의 과징금을 부과함.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>소비자의 구매 결정에 영향을 미치는 중요한 사항에 대해 객관적 근거 없이 허위·과장 광고할 경우 과징금 등 제재를 받을 수 있으므로, 광고 내용의 정확성과 입증 자료 확보에 유의해야 합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54598" target="_blank">260827(조간) 듀오정보(주)의 부당한 광고행위 제재.pdf (pdf, 397.4KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47930" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">4</div>
+            </div>
+
+            <h2>석유유통업종 표준대리점계약서 개정</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-08-26</span>
+                <span>담당부서: 유통대리점정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#석유유통업종</span>
+<span class="keyword">#표준대리점계약서</span>
+<span class="keyword">#전속거래</span>
+<span class="keyword">#사후정산</span>
+<span class="keyword">#혼합구매</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>석유유통업종 표준대리점계약서 개정으로 정유사-주유소 간 전속거래 관행 개선.</li>
+<li>주유소 혼합구매 허용 및 사후정산제 폐지로 거래 투명성 및 주유소 선택권 확대.</li>
+<li>개정된 표준계약서 반영으로 석유공급 시장 경쟁 활성화 및 주유소 영업 활동 지원 기대.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>정유사는 주유소와의 계약 시 혼합구매를 명시하고 사후정산제를 폐지해야 하며, 주유소는 구매 선택권 확대로 가격 경쟁에 참여할 수 있습니다. 이는 석유유통 시장의 투명성과 경쟁을 촉진할 것입니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54585" target="_blank">260826(참고) 석유유통업종 표준대리점계약서 개정.pdf (pdf, 339.2KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=47929" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-08-28 08:00
+        </footer>
+    </div>
+</body>
+</html>
