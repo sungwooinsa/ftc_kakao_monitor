@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>일일 공정위 자동 모니터링 보고</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+            color: #222;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #123c69, #1f5f8b);
+            color: white;
+            border-radius: 22px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .header-label {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-bottom: 8px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            line-height: 1.35;
+            letter-spacing: -0.6px;
+        }
+
+        .header .date {
+            margin-top: 14px;
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px 20px;
+            margin-top: 16px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            border: 1px solid #eceff3;
+        }
+
+        .article-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .article-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #eef3f8;
+            color: #123c69;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .article-card h2 {
+            margin: 8px 0 12px;
+            font-size: 21px;
+            line-height: 1.45;
+            letter-spacing: -0.4px;
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .meta span {
+            background: #f4f6f8;
+            border-radius: 999px;
+            padding: 6px 10px;
+        }
+
+        .keyword-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0 14px;
+        }
+
+        .keyword {
+            background: #eef3f8;
+            color: #123c69;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .block {
+            margin-top: 16px;
+        }
+
+        .block h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #123c69;
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        li {
+            margin: 7px 0;
+            line-height: 1.6;
+        }
+
+        .impact-box {
+            background: #f7f9fc;
+            border-left: 4px solid #1f5f8b;
+            padding: 14px 14px;
+            border-radius: 12px;
+        }
+
+        .impact-box p {
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .attachments {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fffaf0;
+            border: 1px solid #f3e0b5;
+            border-radius: 12px;
+        }
+
+        .attachments h3 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            color: #946200;
+        }
+
+        .attachments a {
+            display: block;
+            color: #946200;
+            font-size: 14px;
+            margin: 6px 0;
+            word-break: break-all;
+        }
+
+        .original-link {
+            display: block;
+            margin-top: 18px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            background: #123c69;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .footer {
+            margin-top: 28px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 640px) {
+            .page {
+                padding: 16px 12px 36px;
+            }
+
+            .header {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .article-card {
+                padding: 20px 16px;
+                border-radius: 18px;
+            }
+
+            .article-card h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header-label">공정거래위원회 공식 보도자료 기준</div>
+            <h1>일일 공정위 자동 모니터링 보고</h1>
+            <div class="date">기준일 : 2026-09-23</div>
+        </header>
+
+        
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">1</div>
+            </div>
+
+            <h2>공정위, 우버-DH(배민) 기업결합 사전 심사 개시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-09-22</span>
+                <span>담당부서: 국제기업결합과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#기업결합</span>
+<span class="keyword">#사전 심사</span>
+<span class="keyword">#플랫폼 사업자</span>
+<span class="keyword">#경쟁 제한성</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정위는 우버의 DH(배달의민족 운영사) 주식 전부 취득에 대한 사전 심사를 개시했습니다.</li>
+<li>이는 택시 호출 플랫폼 사업자와 배달 플랫폼 사업자 간의 혼합결합에 해당합니다.</li>
+<li>공정위는 택시 호출 및 배달 시장 경쟁 구조와 이용자 선택에 미치는 영향을 면밀히 심사할 예정입니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>플랫폼 간 서비스 연계 및 교차 이용 확대 가능성이 있어, 경쟁 제한성 여부에 대한 공정위의 심사 결과가 관련 시장 사업자들의 사업 전략 및 경쟁 환경에 큰 영향을 미칠 수 있습니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54853" target="_blank">260922(참고) 공정위, 우버-DH(배민) 기업결합 사전심사 개시.pdf (pdf, 217.1KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=48040" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">2</div>
+            </div>
+
+            <h2>입찰에 있어서의 부당한 공동행위 및 입찰참가자격 제한요청에 관한 지침」 개정안 행정예고</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-09-21</span>
+                <span>담당부서: 시장감시정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#입찰 담합</span>
+<span class="keyword">#반복 담합</span>
+<span class="keyword">#입찰 참가 자격 제한</span>
+<span class="keyword">#공공 입찰</span>
+<span class="keyword">#벌점 기준</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>반복 담합 사업자의 공공입찰 참여 제한을 강화하는 지침 개정안이 행정예고되었습니다.</li>
+<li>반복 담합 판단 기간이 5년에서 10년으로 확대되고, 벌점 기준이 조정됩니다.</li>
+<li>시정명령 이상 조치 2회 시 10년 내 재발 시 입찰 참가 제한 요청 대상에 포함됩니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>입찰 담합 이력이 있는 사업자는 향후 공공 입찰 참여에 더욱 엄격한 제재를 받을 수 있으므로, 관련 규정 변경 사항을 면밀히 검토하고 준수해야 합니다. 특히 반복적인 담합 행위에 대한 제재 강화는 기업의 컴플라이언스 리스크 관리에 중요한 영향을 미칩니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54844" target="_blank">260921(참고) 입찰에 있어서의 부당한 공동행위 및 입찰참가자격 제한요청에 관한 지침 개정안 행정예고.pdf (pdf, 493.6KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=48035" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">3</div>
+            </div>
+
+            <h2>공시대상기업집단 대상 하도급대금 공시제도 및 연동제 설명회 개최</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-09-18</span>
+                <span>담당부서: 기업거래정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#하도급대금 공시</span>
+<span class="keyword">#하도급대금 연동제</span>
+<span class="keyword">#설명회</span>
+<span class="keyword">#공정거래법</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>공정위는 9월 21일 공시대상기업집단 대상 하도급대금 공시제도 및 연동제 설명회를 개최한다.</li>
+<li>설명회에서는 공시 실태 점검 결과 기반 재발 방지 교육 및 연동제 적용 확대 내용이 안내된다.</li>
+<li>하도급대금 결제조건 공시 가이드라인과 FAQ가 배포되어 기업 실무를 지원한다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>하도급대금 공시 및 연동제 관련 법규 준수 여부를 점검하고, 설명회에서 제공되는 가이드라인 및 FAQ를 숙지하여 공시 누락, 지연, 오기 등 위반 사례가 발생하지 않도록 주의해야 한다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54833" target="_blank">260918(참고) 공시대상기업집단 대상 하도급대금 공시제도 및 연동제 설명회 개최.pdf (pdf, 264.0KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=48029" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">4</div>
+            </div>
+
+            <h2>대규모유통업법 개정안 국회 본회의 통과</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-09-17</span>
+                <span>담당부서: 유통대리점정책과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#대금 지급기한 단축</span>
+<span class="keyword">#특약매입</span>
+<span class="keyword">#직매입</span>
+<span class="keyword">#예외 규정</span>
+<span class="keyword">#대규모유통업법</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>대규모유통업법 개정안 통과로 특약매입 등 거래 대금 지급기한이 40일에서 20일로 단축됩니다.</li>
+<li>직매입 거래의 대금 지급기한은 60일에서 35일로 단축되나, 월 1회 정산 시 예외가 인정됩니다.</li>
+<li>천재지변 등 불가피한 사유나 긴급 경영 우려 시 예외가 인정되나, 엄격한 기준과 절차를 거쳐야 합니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>대규모유통업자의 대금 지급기한 단축은 납품업체의 자금 흐름 개선에 기여할 수 있으나, 유통업체의 현금 흐름 관리 및 정산 시스템 개편에 대한 준비가 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54827" target="_blank">260917(참고) 대규모유통업법 개정안 국회 본회의 통과.pdf (pdf, 403.4KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=48026" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+        <section class="article-card">
+            <div class="article-top">
+                <div class="article-number">5</div>
+            </div>
+
+            <h2>디지털교과서용 태블릿 컴퓨터 입찰담합 사건 심의 절차 개시</h2>
+
+            <div class="meta">
+                <span>등록일: 2026-09-17</span>
+                <span>담당부서: 서비스카르텔조사과</span>
+                <span>요약출처: 상세페이지 본문</span>
+                <span>요약상태: AI 요약</span>
+            </div>
+
+            <div class="keyword-row">
+                <span class="keyword">#입찰담합</span>
+<span class="keyword">#디지털교과서</span>
+<span class="keyword">#태블릿 컴퓨터</span>
+<span class="keyword">#공정거래법</span>
+<span class="keyword">#과징금</span>
+            </div>
+
+            <div class="block">
+                <h3>핵심 요약</h3>
+                <ol>
+                    <li>4개 태블릿 제조·판매 사업자가 디지털교과서용 태블릿 입찰에서 담합한 혐의로 심의 절차가 개시되었습니다.</li>
+<li>약 650억 원 규모의 입찰에서 20만 대 이상의 태블릿 컴퓨터가 담합의 영향을 받은 것으로 파악되었습니다.</li>
+<li>공정위 심사관은 입찰담합 위반으로 금지명령, 과징금 부과 및 관련자 고발 의견을 제시했습니다.</li>
+                </ol>
+            </div>
+
+            <div class="block impact-box">
+                <h3>실무 영향</h3>
+                <p>입찰담합은 공정거래법상 중대한 위반행위로, 적발 시 과징금, 형사고발 등 강력한 제재를 받을 수 있습니다. 향후 입찰 참여 시 담합 행위에 대한 철저한 내부 통제가 필요합니다.</p>
+            </div>
+
+            <div class="attachments"><h3>첨부파일</h3><a href="https://www.ftc.go.kr/www/downloadBbsFile.do?atchmnflNo=54824" target="_blank">260918(조간) 디지털교과서용 태블릿 컴퓨터 입찰담합 사건 심의 절차 개시.pdf (pdf, 262.4KB)</a></div>
+
+            <a class="original-link" href="https://www.ftc.go.kr/www/selectBbsNttView.do?pageUnit=20&amp;pageIndex=1&amp;searchCnd=all&amp;key=12&amp;bordCd=3&amp;searchCtgry=01,02&amp;nttSn=48025" target="_blank">
+                공정위 원문 보기
+            </a>
+        </section>
+    
+
+        <footer class="footer">
+            본 보고서는 공정거래위원회 공식 보도자료를 기준으로 자동 생성되었습니다.<br>
+            생성 시각 : 2026-09-23 08:00
+        </footer>
+    </div>
+</body>
+</html>
